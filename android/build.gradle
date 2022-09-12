@@ -19,7 +19,7 @@ rootProject.allprojects {
         google()
         mavenCentral()
         jcenter()
-        maven { url 'http://maven.zohodl.com/' }
+        maven { url 'https://maven.zohodl.com/' }
         maven { url 'https://downloads.zohocdn.com/wmslibrary' }
     }
 }
