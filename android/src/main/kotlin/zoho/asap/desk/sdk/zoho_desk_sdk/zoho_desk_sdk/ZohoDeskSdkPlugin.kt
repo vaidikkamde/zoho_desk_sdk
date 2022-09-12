@@ -33,10 +33,10 @@ class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler {
       val map = call.arguments as HashMap<String, Any>
       apiProvider.initDesk(map["orgId"].toString(),map["appId"].toString,map["datacenterValue"].toString());
       result.success("Android Crisp sdk initialized successful");
-    } else if (call.method == 'showDashBoard'){
+    } else if (call.method == "showDashBoard"){
       ZDPortalHome.show(MainActivity.this);
       result.success("Show Dashboard successful");
-    } else if (call.method == 'showChat'){
+    } else if (call.method == "showChat"){
       val chatUser = ZDPortalChatUser()
       val map = call.arguments as HashMap<String, Any>
       chatUser.setName(map["name"].toString())

@@ -5,9 +5,20 @@ import 'package:flutter/services.dart';
 
 class ZohoDeskSdk {
   static const MethodChannel _channel = MethodChannel('zoho_desk_sdk');
-
-  static Future<String?> get platformVersion async {
-    final String? version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+  Future<String?> init({required String orgId, required String appId, required String datacenterValue}) async{
+    final String? status = await _channel.invokeMethod('initialize',{"orgId":orgId,"appId":appId,"datacenterValue":datacenterValue,},);
+    return status;
+  }
+  Future<String?> showDashBoard() async{
+    final String? status = await _channel.invokeMethod('showDashBoard',);
+    return status;
+  }
+  Future<String?> showChat({required String name, required String email, required String phone}) async{
+    final String? status = await _channel.invokeMethod('initialize',{"name":name,"email":email,"phone":phone,},);
+    return status;
+  }
+  Future<String?> showKnwoledgeBase() async{
+    final String? status = await _channel.invokeMethod('showKnwoledgeBase',);
+    return status;
   }
 }
