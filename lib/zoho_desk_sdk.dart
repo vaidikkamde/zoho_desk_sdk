@@ -13,10 +13,6 @@ class ZohoDeskSdk {
     final String? status = await _channel.invokeMethod('showDashBoard',);
     return status;
   }
-  Future<String?> showChat({required String name, required String email, required String phone}) async{
-    final String? status = await _channel.invokeMethod('initialize',{"name":name,"email":email,"phone":phone,},);
-    return status;
-  }
   Future<String?> showKnwoledgeBase() async{
     final String? status = await _channel.invokeMethod('showKnwoledgeBase',);
     return status;

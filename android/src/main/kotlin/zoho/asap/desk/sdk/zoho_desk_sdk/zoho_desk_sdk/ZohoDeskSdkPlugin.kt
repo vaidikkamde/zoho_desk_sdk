@@ -4,7 +4,6 @@ import androidx.annotation.NonNull
 import com.zoho.desk.asap.api.ZohoDeskPortalSDK
 import com.zoho.desk.asap.kb.ZDPortalKB;
 import com.zoho.desk.asap.ZDPortalHome;
-import com.zoho.desk.chat.ZDPortalChat;
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -34,27 +33,18 @@ class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler {
     context = flutterPluginBinding.applicationContext
 
     ZohoDeskPortalSDK.Logger.enableLogs();
-    apiProvider = ZohoDeskPortalSDK.getInstance(getApplicationContext());
+    apiProvider = ZohoDeskPortalSDK.getInstance(context);
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "initialize") {
       val map = call.arguments as HashMap<String, Any>
       val dataCenterString = map["datacenterValue"].toString();
-      val dataCenterValue = if(dataCenterString == "CN") DataCenter.CN else if(dataCenterString == "EU") DataCenter.EU else if(dataCenterString == "US") DataCenter.US else if(dataCenterString == "IN") DataCenter.IN else if(dataCenterString == "AU") DataCenter.AU else if(dataCenterString == "JP") DataCenter.JP else DataCenter.US;
+      val dataCenterValue = if(dataCenterString == "CN") ZohoDeskPortalSDK.DataCenter.CN else if(dataCenterString == "EU") ZohoDeskPortalSDK.DataCenter.EU else if(dataCenterString == "US") ZohoDeskPortalSDK.DataCenter.US else if(dataCenterString == "IN") ZohoDeskPortalSDK.DataCenter.IN else if(dataCenterString == "AU") ZohoDeskPortalSDK.DataCenter.AU else if(dataCenterString == "JP") ZohoDeskPortalSDK.DataCenter.JP else ZohoDeskPortalSDK.DataCenter.US;
       apiProvider.initDesk(map["orgId"].toLong(),map["appId"].toString(),dataCenterValue);
       result.success("Android Crisp sdk initialized successful");
     } else if (call.method == "showDashBoard"){
       ZDPortalHome.show(activity);
-      result.success("Show Dashboard successful");
-    } else if (call.method == "showChat"){
-      val chatUser = ZDPortalChatUser()
-      val map = call.arguments as HashMap<String, Any>
-      chatUser.setName(map["name"].toString())
-      chatUser.setEmail(map["email"].toString())
-      chatUser.setPhone(map["phone"].toString())
-      ZDPortalChat.setGuestUserDetails(chatUser)
-      ZDPortalChat.show(activity);
       result.success("Show Dashboard successful");
     } else if (call.method == "showKnwoledgeBase"){
       ZDPortalKB.show(activity);
@@ -66,20 +56,5 @@ class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
-  }
-  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    activity = binding.activity;
-  }
-
-  override fun onDetachedFromActivityForConfigChanges() {
-
-  }
-
-  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-
-  }
-
-  override fun onDetachedFromActivity() {
-
   }
 }
