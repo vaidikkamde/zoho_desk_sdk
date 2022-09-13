@@ -6,9 +6,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
-        maven { url 'http://maven.zohodl.com/' }
-        maven { url 'https://downloads.zohocdn.com/wmslibrary' }
     }
 
     dependencies {
@@ -21,6 +18,9 @@ rootProject.allprojects {
     repositories {
         google()
         mavenCentral()
+        jcenter()
+        maven { url 'https://maven.zohodl.com/' }
+        maven { url 'https://downloads.zohocdn.com/wmslibrary' }
     }
 }
 
