@@ -60,4 +60,12 @@ class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler,ActivityAware {
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     activity = binding.activity;
   }
+
+  override fun onDetachedFromActivityForConfigChanges() {
+
+  }
+
+  override fun onDetachedFromActivity() {
+
+  }
 }
