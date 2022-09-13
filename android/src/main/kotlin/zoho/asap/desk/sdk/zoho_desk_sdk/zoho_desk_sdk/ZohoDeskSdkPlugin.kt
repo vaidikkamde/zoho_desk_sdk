@@ -17,7 +17,7 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import android.app.Application;
 /** ZohoDeskSdkPlugin */
-class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler {
+class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler,ActivityAware {
   private lateinit var context: Context
   private lateinit var activity: Activity
   private lateinit var apiProvider: ZohoDeskPortalSDK
