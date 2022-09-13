@@ -13,7 +13,7 @@ import android.content.Intent
 import android.util.Log
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
-
+import android.app.Application;
 /** ZohoDeskSdkPlugin */
 class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var context: Context
@@ -37,10 +37,12 @@ class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler {
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "initialize") {
       val map = call.arguments as HashMap<String, Any>
-      apiProvider.initDesk(map["orgId"].toString(),map["appId"].toString,map["datacenterValue"].toString());
+      val dataCenterString = map["datacenterValue"].toString();
+      val dataCenterValue = if(dataCenterString == "CN") DataCenter.CN else if(dataCenterString == "EU") DataCenter.EU else if(dataCenterString == "US") DataCenter.US else if(dataCenterString == "IN") DataCenter.IN else if(dataCenterString == "AU") DataCenter.AU else if(dataCenterString == "JP") DataCenter.JP else DataCenter.US;
+      apiProvider.initDesk(map["orgId"].toLong(),map["appId"].toString(),dataCenterValue);
       result.success("Android Crisp sdk initialized successful");
     } else if (call.method == "showDashBoard"){
-      ZDPortalHome.show(MainActivity.this);
+      ZDPortalHome.show(activity);
       result.success("Show Dashboard successful");
     } else if (call.method == "showChat"){
       val chatUser = ZDPortalChatUser()
