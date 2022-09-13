@@ -2,6 +2,9 @@ package zoho.asap.desk.sdk.zoho_desk_sdk.zoho_desk_sdk
 
 import androidx.annotation.NonNull
 import com.zoho.desk.asap.api.ZohoDeskPortalSDK
+import com.zoho.desk.asap.kb.ZDPortalKB;
+import com.zoho.desk.asap.ZDPortalHome;
+import com.zoho.desk.chat.ZDPortalChat;
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
