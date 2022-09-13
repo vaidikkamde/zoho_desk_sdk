@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 class ZohoDeskSdk {
   static const MethodChannel _channel = MethodChannel('zoho_desk_sdk');
-  Future<String?> init({required int orgId, required String appId, required String datacenterValue}) async{
+  Future<String?> init({required String orgId, required String appId, required String datacenterValue}) async{
     final String? status = await _channel.invokeMethod('initialize',{"orgId":orgId,"appId":appId,"datacenterValue":datacenterValue,},);
     return status;
   }

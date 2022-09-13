@@ -41,7 +41,7 @@ class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler {
       val map = call.arguments as HashMap<String, Any>
       val dataCenterString = map["datacenterValue"].toString();
       val dataCenterValue = if(dataCenterString == "CN") ZohoDeskPortalSDK.DataCenter.CN else if(dataCenterString == "EU") ZohoDeskPortalSDK.DataCenter.EU else if(dataCenterString == "US") ZohoDeskPortalSDK.DataCenter.US else if(dataCenterString == "IN") ZohoDeskPortalSDK.DataCenter.IN else if(dataCenterString == "AU") ZohoDeskPortalSDK.DataCenter.AU else if(dataCenterString == "JP") ZohoDeskPortalSDK.DataCenter.JP else ZohoDeskPortalSDK.DataCenter.US;
-      apiProvider.initDesk(map["orgId"],map["appId"].toString(),dataCenterValue);
+      apiProvider.initDesk(map["orgId"].toString().toLong(),map["appId"].toString(),dataCenterValue);
       result.success("Android Crisp sdk initialized successful");
     } else if (call.method == "showDashBoard"){
       ZDPortalHome.show(activity);
