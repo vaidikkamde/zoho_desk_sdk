@@ -17,7 +17,7 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import android.app.Application;
 /** ZohoDeskSdkPlugin */
-class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler,ActivityAware {
+public class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler,ActivityAware {
   private lateinit var context: Context
   private lateinit var activity: Activity
   private lateinit var apiProvider: ZohoDeskPortalSDK
@@ -55,9 +55,21 @@ class ZohoDeskSdkPlugin: FlutterPlugin, MethodCallHandler,ActivityAware {
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-    channel.setMethodCallHandler(null)
+    channel.setMethodCallHandler(null);
   }
+  override fun onDetachedFromActivity() {
+    TODO("Not yet implemented")
+  }
+
+  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+    TODO("Not yet implemented")
+  }
+
   override fun onAttachedToActivity(binding: ActivityPluginBinding) {
     activity = binding.activity;
+  }
+
+  override fun onDetachedFromActivityForConfigChanges() {
+    TODO("Not yet implemented")
   }
 }
